@@ -1,8 +1,8 @@
 # Monochat
 A cross-platform LLM  chat application written in Tauri. Compatible with Windows, MacOS, Linux, Android and iOS.
 
-![Screenshot 1](screenshot-1.jpg)
-![Screenshot 2](screenshot-2.jpg)
+![Screenshot 1](screenshot-1.png)
+![Screenshot 2](screenshot-2.png)
 
 # TODO
 
