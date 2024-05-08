@@ -1,7 +1,19 @@
-# Tauri + React + Typescript
+# Monochat
+A cross-platform LLM  chat application written in Tauri. Compatible with Windows, MacOS, Linux, Android and iOS.
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+![Screenshot 1](screenshot-1.jpg)
+![Screenshot 2](screenshot-2.jpg)
 
-## Recommended IDE Setup
+# TODO
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+ - [x] Basic application
+ - [ ] Provide easy accessibility
+ - [ ] Ability to utilize web search
+ - [ ] Ability to utilize tools
+ - [ ] Save conversations in a database
+ - [ ] Simple document RAG
+ - [ ] Long-term agent memory
+
+# Contribution
+
+Any form of contribution is gladly appritiated.
