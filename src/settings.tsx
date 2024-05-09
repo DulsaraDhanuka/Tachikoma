@@ -21,8 +21,7 @@ import {
 } from "@/components/ui/form"
 import { useRoute } from "@/contexts/route-provider";
 import { HashMap } from "@/lib/utils";
-import { SettingsIcon } from "lucide-react";
-import structuredClone from '@ungap/structured-clone';
+import structuredClone from "@ungap/structured-clone";
 
 type LLMProviderSettings = {
   name: string,
@@ -105,8 +104,8 @@ export default function Settings({ llmProviders }: { llmProviders: LLMProviderBa
 
   return (
     <>
-      <div className="flex w-full flex-col h-screen">
-        <header className="flex border-b bg-background px-4 flex-none">
+      <div className="w-full">
+        <header className="sticky top-0 flex border-b bg-background px-4 flex-none">
           <div className="flex h-16 w-full items-center gap-4">
             <Label htmlFor="avatar">Settings</Label>
           </div>
@@ -114,10 +113,10 @@ export default function Settings({ llmProviders }: { llmProviders: LLMProviderBa
             <ModeToggle />
           </div>
         </header>
-        <div className="grow w-full">
+        <div className="grow w-full h-svh overflow-y-auto">
           <Form {...form}>
-            <form className="flex flex-col h-full" onSubmit={form.handleSubmit(onSubmit)}>
-              <div className="flex flex-col gap-3 m-5 h-full">
+            <form className="flex flex-col" onSubmit={form.handleSubmit(onSubmit)}>
+              <div className="flex flex-col gap-3 m-5">
                 <fieldset className="grid gap-3 rounded-lg border p-4">
                   <legend className="-ml-1 px-1 text-sm font-medium">
                     Database Settings

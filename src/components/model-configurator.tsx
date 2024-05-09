@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/form";
 import { FieldValues, useForm } from "react-hook-form";
 import { ModeToggle } from "@/components/mode-toggle";
-import { PlusIcon, SettingsIcon } from "lucide-react";
+import { SettingsIcon } from "lucide-react";
 import { useRoute } from "@/contexts/route-provider";
 
 type Model = {

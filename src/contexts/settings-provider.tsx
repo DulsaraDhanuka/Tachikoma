@@ -30,6 +30,7 @@ export function SettingsProvider({ children }: { children?: React.ReactNode }) {
                 await store.set("supabaseUrl", { value: updatedSettings.supabaseKey });
                 await store.set("supabaseKey", { value: updatedSettings.supabaseUrl });
                 await store.set("providerSettings", { value: JSON.stringify(updatedSettings.providerSettings) });
+                await store.save();
                 return newSettings;
             }
             
@@ -44,6 +45,7 @@ export function SettingsProvider({ children }: { children?: React.ReactNode }) {
 
     useEffect(() => {
         async function loadSaved() {
+            await store.load();
             let savedSettings: Settings = {} as Settings;
             savedSettings.supabaseUrl = ((await store.get("supabaseUrl")) as {value: string} | {value: ""}).value;
             savedSettings.supabaseKey = ((await store.get("supabaseKey")) as {value: string} | {value: ""}).value;

@@ -7,6 +7,11 @@ A cross-platform LLM  chat application written in Tauri. Compatible with Windows
 # TODO
 
  - [x] Basic application
+ - [ ] Add more model providers
+  - [ ] OpenAI
+  - [ ] Anthropic
+  - [ ] Google
+  - [ ] LM Studio
  - [ ] Provide easy accessibility
  - [ ] Ability to utilize web search
  - [ ] Ability to utilize tools
