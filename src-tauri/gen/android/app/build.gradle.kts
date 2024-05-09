@@ -6,10 +6,10 @@ plugins {
 
 android {
     compileSdk = 33
-    namespace = "com.tauri.monochat"
+    namespace = "com.monochat.monochat"
     defaultConfig {
         manifestPlaceholders["usesCleartextTraffic"] = "false"
-        applicationId = "com.tauri.monochat"
+        applicationId = "com.monochat.monochat"
         minSdk = 24
         targetSdk = 33
         versionCode = 1

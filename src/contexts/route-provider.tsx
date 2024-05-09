@@ -1,6 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
-const RouteProviderContext = createContext({ currentRoute: "/", setCurrentRoute: (route: string) => {} });
+const RouteProviderContext = createContext({ currentRoute: "/", setCurrentRoute: (_route: string) => {} });
 
 export function RouteProvider({ children, storageKey = "current-route", }: { children?: React.ReactNode, storageKey?: string }) {
     const [currentRoute, setCurrentRoute] = useState<string>(

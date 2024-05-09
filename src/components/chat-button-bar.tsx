@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Paperclip, Mic, CornerDownLeft } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function ChatBottomBar({ onSend }: { onSend: (message: string) => any }) {
     const [message, setMessage] = useState("");

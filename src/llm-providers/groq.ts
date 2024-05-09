@@ -52,7 +52,7 @@ export class Groq extends LLMProviderBase {
         return this.models;
     }
 
-    async getModelConfigurations(model: string): Promise<ModelConfigurationField[]> {
+    async getModelConfigurations(_model: string): Promise<ModelConfigurationField[]> {
         return [
             {
                 type: FieldType.MULTILINE,

@@ -1,7 +1,7 @@
 import ChatHeader from "@/components/chat-header";
 import { LLMProviderBase } from "@/llm-providers/llm-provider-base";
 import ChatBottomBar from "@/components/chat-button-bar";
-import { AssistantProviderState, useAssistant } from "@/contexts/assistant-provider";
+import { useAssistant } from "@/contexts/assistant-provider";
 import { Message } from "@/lib/chat-types";
 import ChatItem from "@/components/chat-item";
 import { useEffect, useRef } from "react";

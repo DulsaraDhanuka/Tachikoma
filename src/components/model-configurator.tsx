@@ -1,66 +1,12 @@
-import {
-    Calculator,
-    Calendar,
-    CircleUser,
-    CreditCard,
-    Search,
-    Settings,
-    Smile,
-    CornerDownLeft,
-    User,
-    Paperclip,
-    Mic,
-    Menu,
-    Moon,
-    Sun,
-    Plus,
-    Rabbit,
-    Bird,
-    Turtle,
-} from "lucide-react";
-import { PlusIcon, CalendarIcon, FaceIcon, RocketIcon, PersonIcon, EnvelopeClosedIcon, GearIcon, ChatBubbleIcon } from '@radix-ui/react-icons'
-import { Badge } from "@/components/ui/badge"
 
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import {
-    Command,
-    CommandDialog,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-    CommandSeparator,
-    CommandShortcut,
-} from "@/components/ui/command";
 
-import { Input } from "@/components/ui/input";
-import {
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { Textarea } from "@/components/ui/textarea";
-import ChatItem from "@/components/chat-item";
-import ChatBottomBar from "@/components/chat-button-bar";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { useEffect, useMemo, useState } from "react";
-import { ModeToggle } from "@/components/mode-toggle";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useEffect, useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Groq } from '@/llm-providers/groq';
 import { FieldType, LLMProviderBase, ModelConfigurationField } from "@/llm-providers/llm-provider-base";
 import {
     Form,
@@ -72,9 +18,6 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { FieldValues, useForm } from "react-hook-form";
-import { Cohere } from "@/llm-providers/cohere";
-import { useSettings } from "@/contexts/settings-provider";
-import { useRoute } from "@/contexts/route-provider";
 
 type Model = {
     provider: string,
@@ -85,7 +28,6 @@ type Model = {
 
 export default function ModelConfigurator({ llmsInitialized, llmProviders, model, onModelChange, provider, onProviderChange, onStartConversation }: { llmsInitialized: boolean, llmProviders: LLMProviderBase[], model: string, onModelChange: (model: string) => void, provider: LLMProviderBase | null, onProviderChange: (provider: LLMProviderBase | null) => void, onStartConversation: (provider: LLMProviderBase, model: string, configuration: FieldValues) => any }) {
     const form = useForm();
-    const { settings, settingsUpdated } = useSettings();
     const [avaiableModels, setAvailableModels] = useState<Model[]>([]);
     const [configurationFields, setConfigurationFields] = useState<ModelConfigurationField[]>([]);
 

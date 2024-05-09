@@ -10,7 +10,7 @@ export type Settings = {
 
 const store = new Store('settings.bin');
 
-const SettingsProviderContext = createContext({ settings: {} as Settings, settingsUpdated: false, updateSettings: (settings: Settings) => { } });
+const SettingsProviderContext = createContext({ settings: {} as Settings, settingsUpdated: false, updateSettings: (_settings: Settings) => { } });
 
 export function SettingsProvider({ children }: { children?: React.ReactNode }) {
     const [settings, updateSettings] = useState<Settings>(

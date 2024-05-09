@@ -1,5 +1,5 @@
 import { LLMProviderBase } from "@/llm-providers/llm-provider-base";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { Message } from "@/lib/chat-types";
 
@@ -11,7 +11,7 @@ export type AssistantProviderState = {
     sendMessage: (message: string) => undefined
 };
 
-const AssistantProviderContext = createContext<AssistantProviderState>({ llmProvider: null, model: "", configuration: {}, messages: [], sendMessage: (message: string) => undefined });
+const AssistantProviderContext = createContext<AssistantProviderState>({ llmProvider: null, model: "", configuration: {}, messages: [], sendMessage: (_message: string) => undefined });
 
 export function AssistantProvider({ children, llmProvider, model, configuration, history }: { children?: React.ReactNode, llmProvider: LLMProviderBase, model: string, configuration: FieldValues, history: Message[] }) {
     const [messages, setMessages] = useState<Message[]>(history);

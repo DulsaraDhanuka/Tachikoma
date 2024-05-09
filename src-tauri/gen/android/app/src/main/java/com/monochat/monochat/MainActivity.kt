@@ -1,3 +1,3 @@
-package com.tauri.monochat
+package com.monochat.monochat
 
 class MainActivity : TauriActivity()

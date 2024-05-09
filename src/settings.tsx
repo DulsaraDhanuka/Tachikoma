@@ -1,64 +1,12 @@
-import {
-  Calculator,
-  Calendar,
-  CircleUser,
-  CreditCard,
-  Search,
-  Smile,
-  CornerDownLeft,
-  User,
-  Paperclip,
-  Mic,
-  Menu,
-  Moon,
-  Sun,
-  Plus,
-} from "lucide-react";
-import { PlusIcon, CalendarIcon, FaceIcon, RocketIcon, PersonIcon, EnvelopeClosedIcon, GearIcon, ChatBubbleIcon } from '@radix-ui/react-icons'
-import { Badge } from "@/components/ui/badge"
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  Command,
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
-} from "@/components/ui/command";
 
 import { Input } from "@/components/ui/input";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-import { Textarea } from "@/components/ui/textarea";
-import ChatItem from "@/components/chat-item";
-import ChatBottomBar from "@/components/chat-button-bar";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import ModelConfigurator from "@/components/model-configurator";
-import { Groq } from '@/llm-providers/groq';
-import { Cohere } from "@/llm-providers/cohere";
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { FieldType, LLMProviderBase, LLMProviderSettingsField } from "@/llm-providers/llm-provider-base";
 import { useSettings } from "@/contexts/settings-provider";
 
