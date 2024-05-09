@@ -31,8 +31,12 @@ export default function App() {
 
   return (
     <>
-      { currentRoute == "/" && <Home llmsInitialized={llmsInitialized} llmProviders={llmProviders} /> }
-      { currentRoute == "/settings" && <Settings llmProviders={llmProviders} /> }
+      <div className={currentRoute != "/" ? "hidden" : ""}>
+        <Home llmsInitialized={llmsInitialized} llmProviders={llmProviders} />
+      </div>
+      <div className={currentRoute != "/settings" ? "hidden" : ""}>
+        <Settings llmProviders={llmProviders} />
+      </div>
     </>
   )
 }

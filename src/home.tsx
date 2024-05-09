@@ -24,9 +24,11 @@ import { useRoute } from "@/contexts/route-provider";
 import { AssistantProvider } from "./contexts/assistant-provider";
 import Chat from "@/components/chat";
 import { LLMProviderBase } from "@/llm-providers/llm-provider-base";
+import { useSettings } from "@/contexts/settings-provider";
 
 export default function Home({ llmsInitialized, llmProviders }: { llmsInitialized: boolean, llmProviders: LLMProviderBase[] }) {
   const { setCurrentRoute } = useRoute();
+  const { settingsUpdated } = useSettings();
   const [isCommandDialogOpen, setCommandDialogOpen] = useState(false);
   const [chatView, setChatView] = useState(false);
   const [selectedProvider, setSelectedProvider] = useState<LLMProviderBase | null>();
@@ -45,6 +47,10 @@ export default function Home({ llmsInitialized, llmProviders }: { llmsInitialize
     return () => document.removeEventListener("keydown", down)
   }, []);
 
+  useEffect(() => {
+    setChatView(false);
+  }, [settingsUpdated]);
+
   const onStartConversation = (_provider: LLMProviderBase, _model: string, configuration: FieldValues) => {
     setModelConfiguration(configuration);
     setChatView(true);
@@ -56,7 +62,7 @@ export default function Home({ llmsInitialized, llmProviders }: { llmsInitialize
         chatView ?
           <>
             <AssistantProvider llmProvider={selectedProvider!} model={selectedModel} configuration={modelConfiguration} history={[]}>
-              <Chat selectedProvider={selectedProvider!} selectedModel={selectedModel} />
+              <Chat selectedProvider={selectedProvider!} selectedModel={selectedModel} onNewConversation={() => { setChatView(false) }} />
             </AssistantProvider>
           </> :
           <ModelConfigurator llmsInitialized={llmsInitialized} llmProviders={llmProviders} model={selectedModel} onModelChange={setSelectedModel} provider={selectedProvider!} onProviderChange={setSelectedProvider} onStartConversation={onStartConversation} />

@@ -21,38 +21,42 @@ export function SettingsProvider({ children }: { children?: React.ReactNode }) {
     const value = {
         settings,
         settingsUpdated,
-        updateSettings: (settings: Settings) => {
+        updateSettings: (updatedSettings: Settings) => {
             async function updateStore() {
                 let newSettings: Settings = {} as Settings;
-                newSettings.supabaseKey = settings.supabaseKey as string | ""
-                newSettings.supabaseUrl = settings.supabaseUrl as string | ""
-                newSettings.providerSettings = settings.providerSettings as HashMap<HashMap<string>> | {}
-                await store.set("supabaseUrl", { value: settings.supabaseKey });
-                await store.set("supabaseKey", { value: settings.supabaseUrl });
-                await store.set("providerSettings", { value: JSON.stringify(settings.providerSettings) });
+                newSettings.supabaseKey = updatedSettings.supabaseKey as string | ""
+                newSettings.supabaseUrl = updatedSettings.supabaseUrl as string | ""
+                newSettings.providerSettings = updatedSettings.providerSettings as HashMap<HashMap<string>> | {}
+                await store.set("supabaseUrl", { value: updatedSettings.supabaseKey });
+                await store.set("supabaseKey", { value: updatedSettings.supabaseUrl });
+                await store.set("providerSettings", { value: JSON.stringify(updatedSettings.providerSettings) });
                 return newSettings;
             }
-    
-            updateStore().then((settings) => {
-                updateSettings(settings);
-                setSettingsUpdated(!settingsUpdated);
-            });
+            
+            if (JSON.stringify(updatedSettings) != JSON.stringify(settings)) {
+                updateStore().then((savedSettings) => {
+                    updateSettings(savedSettings);
+                    setSettingsUpdated(!settingsUpdated);
+                });
+            }
         },
     }
 
     useEffect(() => {
         async function loadSaved() {
-            let newSettings: Settings = {} as Settings;
-            newSettings.supabaseUrl = ((await store.get("supabaseUrl")) as {value: string} | {value: ""}).value;
-            newSettings.supabaseKey = ((await store.get("supabaseKey")) as {value: string} | {value: ""}).value;
-            newSettings.providerSettings = JSON.parse(((await store.get("providerSettings")) as {value: string} | {value: "{}"}).value);
+            let savedSettings: Settings = {} as Settings;
+            savedSettings.supabaseUrl = ((await store.get("supabaseUrl")) as {value: string} | {value: ""}).value;
+            savedSettings.supabaseKey = ((await store.get("supabaseKey")) as {value: string} | {value: ""}).value;
+            savedSettings.providerSettings = JSON.parse(((await store.get("providerSettings")) as {value: string} | {value: "{}"}).value);
 
-            return newSettings
+            return savedSettings
         }
 
-        loadSaved().then((settings) => {
-            updateSettings(settings);
-            setSettingsUpdated(!settingsUpdated);
+        loadSaved().then((savedSettings) => {
+            if (JSON.stringify(savedSettings) != JSON.stringify(settings)) {
+                updateSettings(savedSettings);
+                setSettingsUpdated(!settingsUpdated);
+            }
         });
     }, []);
 

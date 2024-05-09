@@ -21,6 +21,8 @@ import {
 } from "@/components/ui/form"
 import { useRoute } from "@/contexts/route-provider";
 import { HashMap } from "@/lib/utils";
+import { SettingsIcon } from "lucide-react";
+import structuredClone from '@ungap/structured-clone';
 
 type LLMProviderSettings = {
   name: string,
@@ -38,7 +40,7 @@ export default function Settings({ llmProviders }: { llmProviders: LLMProviderBa
     form.setValue("supabaseurl", settings.supabaseUrl);
     form.setValue("supabasekey", settings.supabaseKey);
     let providerSettings = Object.entries(settings.providerSettings ? settings.providerSettings : {});
-    for (let i = 0; i  < providerSettings.length; i++) {
+    for (let i = 0; i < providerSettings.length; i++) {
       const [providerName, providerFields]: [string, any] = providerSettings[i];
       const fields = Object.entries(providerFields);
       for (let k = 0; k < fields.length; k++) {
@@ -46,7 +48,7 @@ export default function Settings({ llmProviders }: { llmProviders: LLMProviderBa
         form.setValue("providerSettings[" + providerName + "[" + name + "]" + "]", value);
       }
     }
-    
+
     async function loadLLMProviderSettings() {
       let settings: LLMProviderSettings[] = [];
       for (let i = 0; i < llmProviders.length; i++) {
@@ -66,7 +68,7 @@ export default function Settings({ llmProviders }: { llmProviders: LLMProviderBa
     form.setValue("supabaseurl", settings.supabaseUrl);
     form.setValue("supabasekey", settings.supabaseKey);
     let providerSettings = Object.entries(settings.providerSettings ? settings.providerSettings : {});
-    for (let i = 0; i  < providerSettings.length; i++) {
+    for (let i = 0; i < providerSettings.length; i++) {
       const [providerName, providerFields]: [string, any] = providerSettings[i];
       const fields = Object.entries(providerFields);
       for (let k = 0; k < fields.length; k++) {
@@ -78,25 +80,26 @@ export default function Settings({ llmProviders }: { llmProviders: LLMProviderBa
 
   const onSubmit = () => {
     let values = form.getValues();
-    settings.supabaseUrl = values.supabaseurl;
-    settings.supabaseKey = values.supabasekey;
+    let oldSettings = structuredClone(settings);
+    oldSettings.supabaseUrl = values.supabaseurl;
+    oldSettings.supabaseKey = values.supabasekey;
 
     let providerSettings: HashMap<HashMap<string>> = {};
     let providers = Object.entries(values.providerSettings);
-    
-    for (let i = 0; i  < providers.length; i++) {
+
+    for (let i = 0; i < providers.length; i++) {
       const [providerName, providerFields]: [string, any] = providers[i];
       const fields = Object.entries(providerFields);
-      
+
       providerSettings[providerName] = {} as HashMap<string>;
       for (let k = 0; k < fields.length; k++) {
         const [name, value]: [string, string] = fields[k] as [string, string];
         providerSettings[providerName][name] = value;
       }
     }
-    settings.providerSettings = providerSettings;
+    oldSettings.providerSettings = providerSettings;
 
-    updateSettings(settings);
+    updateSettings(oldSettings);
     setCurrentRoute("/");
   }
 
@@ -168,7 +171,7 @@ export default function Settings({ llmProviders }: { llmProviders: LLMProviderBa
                               <FormItem>
                                 <FormLabel>{fieldDesc.name}</FormLabel>
                                 <FormControl>
-                                  {fieldDesc.type == FieldType.SINGLELINE && <Input type="text" defaultValue={fieldDesc.default} { ...field } />}
+                                  {fieldDesc.type == FieldType.SINGLELINE && <Input type="text" defaultValue={fieldDesc.default} {...field} />}
                                 </FormControl>
                                 <FormDescription></FormDescription>
                                 <FormMessage />

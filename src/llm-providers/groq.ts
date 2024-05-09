@@ -70,7 +70,7 @@ export class Groq extends LLMProviderBase {
             return { role: message.author == "user" ? "user" : "assistant", content: message.content }
         }));
         messages.push({ role: "user", content: message });
-        console.log(messages);
+
         return (await this.groq.chat.completions.create({
             model: model,
             messages: messages,

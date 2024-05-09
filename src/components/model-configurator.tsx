@@ -18,6 +18,9 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { FieldValues, useForm } from "react-hook-form";
+import { ModeToggle } from "@/components/mode-toggle";
+import { PlusIcon, SettingsIcon } from "lucide-react";
+import { useRoute } from "@/contexts/route-provider";
 
 type Model = {
     provider: string,
@@ -28,6 +31,7 @@ type Model = {
 
 export default function ModelConfigurator({ llmsInitialized, llmProviders, model, onModelChange, provider, onProviderChange, onStartConversation }: { llmsInitialized: boolean, llmProviders: LLMProviderBase[], model: string, onModelChange: (model: string) => void, provider: LLMProviderBase | null, onProviderChange: (provider: LLMProviderBase | null) => void, onStartConversation: (provider: LLMProviderBase, model: string, configuration: FieldValues) => any }) {
     const form = useForm();
+    const { setCurrentRoute } = useRoute();
     const [avaiableModels, setAvailableModels] = useState<Model[]>([]);
     const [configurationFields, setConfigurationFields] = useState<ModelConfigurationField[]>([]);
 
@@ -80,6 +84,16 @@ export default function ModelConfigurator({ llmsInitialized, llmProviders, model
 
     return (
         <>
+            <header className="top-0 z-10 flex bg-background px-4 flex-none justify-end">
+
+                <div className="flex h-16 items-center gap-4">
+                    <Button variant="outline" size="icon" onClick={() => { setCurrentRoute("/settings") }}>
+                        <SettingsIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
+                        <span className="sr-only">Settings</span>
+                    </Button>
+                    <ModeToggle />
+                </div>
+            </header>
             <Form {...form}>
                 <form className="flex flex-col h-full" onSubmit={form.handleSubmit(startConversation)}>
                     <div className="flex flex-col gap-3 m-5 h-full">
@@ -132,7 +146,7 @@ export default function ModelConfigurator({ llmsInitialized, llmProviders, model
                                         <FormItem>
                                             <FormLabel>{fieldDesc.name}</FormLabel>
                                             <FormControl>
-                                                {fieldDesc.type == FieldType.MULTILINE && ( <Textarea defaultValue={fieldDesc.default} {...field} /> )}
+                                                {fieldDesc.type == FieldType.MULTILINE && (<Textarea defaultValue={fieldDesc.default} {...field} />)}
                                             </FormControl>
                                             <FormDescription></FormDescription>
                                             <FormMessage />

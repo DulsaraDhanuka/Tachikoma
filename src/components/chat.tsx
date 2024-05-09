@@ -6,7 +6,7 @@ import { Message } from "@/lib/chat-types";
 import ChatItem from "@/components/chat-item";
 import { useEffect, useRef } from "react";
 
-export default function Chat({ selectedProvider, selectedModel }: { selectedProvider: LLMProviderBase | undefined, selectedModel: string }) {
+export default function Chat({ selectedProvider, selectedModel, onNewConversation }: { selectedProvider: LLMProviderBase | undefined, selectedModel: string, onNewConversation: () => undefined }) {
     const ref = useRef<HTMLDivElement>(null);
     const { messages, sendMessage } = useAssistant();
 
@@ -16,7 +16,7 @@ export default function Chat({ selectedProvider, selectedModel }: { selectedProv
 
     return (
         <div className="flex w-full flex-col h-screen">
-            <ChatHeader name={selectedProvider?.getModelName(selectedModel)} icon={selectedProvider?.getIcon()} />
+            <ChatHeader name={selectedProvider?.getModelName(selectedModel)} icon={selectedProvider?.getIcon()} onNewConversation={ onNewConversation } />
             <div className="grow" ref={ref}>
                 {
                     messages.map((message: Message) => (

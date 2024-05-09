@@ -68,7 +68,6 @@ export class Cohere extends LLMProviderBase {
     }
 
     async chat(model: string, message: string, config: FieldValues, messages: Message[]): Promise<string> {
-        console.log(messages);
         let response = await this.client.chat({
             preamble: config["system_prompt"],
             message: message,

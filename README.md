@@ -10,9 +10,9 @@ A cross-platform LLM  chat application written in Tauri. Compatible with Windows
  - [ ] Provide easy accessibility
  - [ ] Ability to utilize web search
  - [ ] Ability to utilize tools
- - [ ] Save conversations in a database
- - [ ] Simple document RAG
- - [ ] Long-term agent memory
+ - [ ] Ability to add personas with temporary personas and longterm personas (similar to Huggingchat Assistants)
+ - [ ] Ability to retain long-term memory in personas
+ - [ ]
 
 # Contribution
 
