@@ -1,0 +1,7 @@
+.message-content p {
+    word-wrap: normal;
+}
+
+.message-content pre {
+    overflow-y: auto;
+}
