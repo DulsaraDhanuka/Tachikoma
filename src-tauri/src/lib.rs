@@ -1,8 +1,8 @@
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
+
+mod settings;
+mod llm_providers;
+mod frontend_api;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -37,7 +37,12 @@ pub fn run() {
         .plugin(tauri_plugin_store::Builder::new().build())
         .plugin(tauri_plugin_clipboard_manager::init())
         .plugin(tauri_plugin_shell::init())
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![
+            frontend_api::llm_providers::get_llm_providers,
+            frontend_api::llm_providers::get_llm_provider_settings,
+            frontend_api::settings::load_app_settings,
+            frontend_api::settings::save_app_settings,
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

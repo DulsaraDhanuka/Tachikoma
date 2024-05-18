@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
-import Layout from "./pages/layout"
-import Home from "./pages/home"
-import NoPage from "./pages/nopage"
+import Layout from "@/pages/layout"
+import Home from "@/pages/home"
+import NoPage from "@/pages/nopage"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Chat from "./pages/chat"
-import AppSettings from "./pages/app-settings"
-import AgentSettings from "./pages/agent-settings"
-import Conversations from "./pages/conversations"
+import Chat from "@/pages/chat"
+import AppSettings from "@/pages/app-settings"
+import AgentSettings from "@/pages/agent-settings"
+import Conversations from "@/pages/conversations"
 
 
 export default function App() {

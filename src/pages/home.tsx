@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
     let test = [1, 2, 3];//, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+
     return (
         <div className="flex flex-col w-full">
             <header className="sticky z-50 top-0 flex h-16 items-center border-b bg-background px-4">

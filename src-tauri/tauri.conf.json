@@ -9,11 +9,10 @@
     "frontendDist": "../dist"
   },
   "app": {
-    "withGlobalTauri": true,
     "windows": [
       {
         "title": "tachikoma",
-        "width": 400,
+        "width": 500,
         "height": 800
       }
     ],
